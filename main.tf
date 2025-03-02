@@ -55,14 +55,6 @@ resource "aws_instance" "web_server" {
   tags = {
     Name = "WebServer"
   }
-  user_data = <<-EOF
-              #!/bin/bash
-              sudo apt update -y
-              udo apt install -y nginx
-              sudo systemctl start nginx
-              sudo systemctl enable nginx
-              echo "<html><body><h1>Welcome to My E-commerce Site!</h1></body></html>" > /var/www/html/index.html
-              EOF
 }
 
 resource "aws_instance" "db_server" {
@@ -73,12 +65,4 @@ resource "aws_instance" "db_server" {
   tags = {
     Name = "DBServer"
   }
-  user_data = <<-EOF
-              #!/bin/bash
-              sudo apt update -y
-              sudo apt install -y mysql-server
-              sudo systemctl start mysql
-              sudo systemctl enable mysql
-              sudo mysql_secure_installation
-              EOF
 }
